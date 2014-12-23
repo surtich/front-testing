@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Info</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+		<div id="messages"></div>
+		<script>
+
+      (function () {
+
+        function sendAjax(userId) {
+          return $.ajax({
+            crossDomain: true,
+            type: 'GET',
+            url: 'http://myapp/user/' + userId
+          });
+        }
+
+        function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        $(document).ready(function () {
+          $.support.cors = true;
+          var userId = getParameterByName('userId');
+          var message = '';
+					
+					if (!userId) {
+						return;
+					}
+          var promise = sendAjax(userId);
+					
+					promise.done(function (user) {
+            message = JSON.stringify(user);
+          });
+
+          promise.fail(function (err) {
+            message = typeof err === 'string' ? err : 'error';
+          });
+
+          promise.always(function () {
+            $('#messages').html(message);
+          });
+
+        });
+      }());
+		</script>
+  </body>
+</html>

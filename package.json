@@ -1,0 +1,29 @@
+{
+  "name": "nock-vs-stubby",
+  "version": "0.0.0",
+  "description": "front-testing =============",
+  "main": "",
+  "dependencies": {
+    "bower": "~1.3.12"
+  },
+  "devDependencies": {
+    "nock": "~0.52.4",
+    "request": "~2.51.0",
+    "zombie": "~2.5.1",
+    "cucumber": "~0.4.6",
+    "http-server": "~0.7.4"
+  },
+  "scripts": {
+    "test": "scripts/test.sh",
+    "install": "node_modules/.bin/bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/IGZJavierPerez/front-testing.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/IGZJavierPerez/front-testing/issues"
+  }
+}

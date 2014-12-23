@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+		<div id="messages"></div>
+		<form>
+			<label for="username">email:</label><input id="username">
+			<br>
+			<label for="email">confirm email:</label><input id="email">
+			<br>
+			<input type="submit" id="register" value="register">
+		</form>
+
+		<iframe src="info.html" width="300" height="300" id="infoWindow">
+		<p>Your browser does not support iframes.</p>
+		</iframe>
+		
+		<script>
+      (function () {
+        function validateRegister(username, email) {
+          var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          if (!re.test(username)) {
+            return 'Invalid email!';
+          }
+
+          if (username !== email) {
+            return 'Confirm email does not match!';
+          }
+
+          return null;
+        }
+
+        function cleanFields() {
+          $('#username').val('');
+          $('#email').val('');
+        }
+
+        function sendAjax(username, email) {
+          return $.ajax({
+            type: 'POST',
+            url: 'http://myapp/register',
+            data: JSON.stringify({
+              username: username,
+              email: email
+            })
+          });
+        }
+
+        function inmediateReject(message) {
+          var deferred = $.Deferred();
+          deferred.reject(message);
+          return deferred.promise();
+        }
+
+        function cleanMessages() {
+          $('#messages').html('');
+        }
+
+        $(document).ready(function () {
+          $.support.cors = true;
+          $('#username').focus(cleanMessages);
+          $('#email').focus(cleanMessages);
+
+          $('#register').click(function (e) {
+            e.preventDefault();
+            var promise;
+            var message = validateRegister($('#username').val(), $('#email').val());
+
+            if (message) {
+              promise = inmediateReject(message);
+            } else {
+              promise = sendAjax($('#username').val(), $('#email').val());
+            }
+
+            promise.done(function (newUser) {
+              message = 'Register done!';
+							$('#infoWindow').get(0).src = 'info.html?userId=' + newUser._id; 
+            });
+
+            promise.fail(function (err) {
+              message = typeof err === 'string' ? err : 'error';
+            });
+
+            promise.always(function () {
+              $('#messages').html(message);
+              cleanFields();
+            });
+          });
+        });
+      }());
+		</script>
+  </body>
+</html>

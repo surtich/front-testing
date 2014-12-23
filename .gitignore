@@ -1,0 +1,4 @@
+/**/nbproject
+/**/node_modules
+/**/bower_components
+/node_modules/cucumber/node_modules/cucumber-html/target/
