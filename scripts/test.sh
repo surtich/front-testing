@@ -1,10 +1,12 @@
 echo "************************"
 echo "Starting static server..."
 ./node_modules/.bin/http-server client/ -p 8080 &
+echo "Starting stubby server..."
+node stubby/server.js &
 echo "************************"
 echo "Testing API REST..."
 echo "************************"
-./node_modules/.bin/cucumber.js nock/test/features/api.register.feature
+./node_modules/.bin/cucumber.js stubby/test/features/api.register.feature
 echo "************************"
 echo "Testing FRONT-END info.html..."
 echo "************************"

@@ -42,7 +42,7 @@
         function sendAjax(username, email) {
           return $.ajax({
             type: 'POST',
-            url: 'http://myapp/register',
+            url: 'http://localhost:8081/register',
             data: JSON.stringify({
               username: username,
               email: email

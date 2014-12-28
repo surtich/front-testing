@@ -1,0 +1,13 @@
+- request:
+    url: /register
+    method: POST
+    headers:
+      Content-Type: Application/json
+    post: '{"username": "test@test.com", "email": "test@test.com"}'
+  response:
+    status: 200
+    latency: 100
+    body: >
+      {"_id": "testId", "username": "test@test.com", "email": "test@test.com"}
+      
+      

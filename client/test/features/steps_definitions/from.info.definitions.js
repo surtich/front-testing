@@ -11,7 +11,7 @@ module.exports = function () {
     var self = this;
     request({
       method: 'GET',
-      uri: 'http://myapp/user/testId'
+      uri: 'http://localhost:8081/user/testId'
     }, function (error, response, body) {
       if (error) {
         return callback(error);

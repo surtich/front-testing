@@ -1,7 +1,7 @@
 // features/support/world.js
 var path = require('path');
 
-var nock = require(path.join('.', '../../../../nock/server'));
+//var nock = require(path.join('.', '../../../../nock/server'));
   
 var zombie = require('zombie');
 var WorldConstructor = function WorldConstructor(callback) {

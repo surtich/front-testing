@@ -2,7 +2,7 @@ var request = require('request');
 var assert = require('assert');
 var path = require('path');
 
-require(path.join('.', '../../../../nock/server'));
+//require(path.join('.', '../../../../stubby/server'));
 
 module.exports = function () {
   this.Given(/^a valid "([^"]*)" email$/, function (username, callback) {
@@ -20,7 +20,7 @@ module.exports = function () {
     var self = this;
     request({
       method: 'POST',
-      uri: 'http://myapp/register',
+      uri: 'http://localhost:8081/register',
       body: {
         username: this.username,
         email: this.email
@@ -41,7 +41,7 @@ module.exports = function () {
     var self = this;
     request({
       method: 'GET',
-      uri: 'http://myapp/user/' + userId
+      uri: 'http://localhost:8081/user/' + userId
     }, function (error, response, body) {
       if (error) {
         throw error;
