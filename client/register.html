@@ -78,12 +78,8 @@
             }
 
             promise.done(function (data) {
-              if ('error' in data) {
-								message = 'Error: ' + data.error;
-              } else {
-                message = 'Register done!';
-                $('#infoWindow').get(0).src = 'info.html?userId=' + data._id;
-              }
+              message = 'Register done!';
+              $('#infoWindow').get(0).src = 'info.html?userId=' + data._id;
             });
 
             promise.fail(function (err) {

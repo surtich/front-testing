@@ -19,7 +19,7 @@ function register(nock, username) {
   }, user);
   
   nock.post('/register', user).once().reply(200, reply);
-  nock.post('/register', user).times(Infinity).reply(200, {error: 'Duplicated user'});
+  nock.post('/register', user).times(Infinity).reply(405, {message: 'Duplicated user'});
 
   nock.get('/user/' + idUser).times(Infinity).reply(200, reply);
 }
