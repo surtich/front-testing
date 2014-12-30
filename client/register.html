@@ -18,7 +18,7 @@
 		<iframe src="info.html" width="300" height="300" id="infoWindow">
 		<p>Your browser does not support iframes.</p>
 		</iframe>
-		
+
 		<script>
       (function () {
         function validateRegister(username, email) {
@@ -62,6 +62,7 @@
 
         $(document).ready(function () {
           $.support.cors = true;
+
           $('#username').focus(cleanMessages);
           $('#email').focus(cleanMessages);
 
@@ -76,13 +77,22 @@
               promise = sendAjax($('#username').val(), $('#email').val());
             }
 
-            promise.done(function (newUser) {
-              message = 'Register done!';
-							$('#infoWindow').get(0).src = 'info.html?userId=' + newUser._id; 
+            promise.done(function (data) {
+              if ('error' in data) {
+								message = 'Error: ' + data.error;
+              } else {
+                message = 'Register done!';
+                $('#infoWindow').get(0).src = 'info.html?userId=' + data._id;
+              }
             });
 
             promise.fail(function (err) {
-              message = typeof err === 'string' ? err : 'error';
+              message = 'Error';
+              if (typeof err === 'string') {
+                message = err;
+              } else if ('message' in err) {
+                message += ': ' + err.message;
+              }
             });
 
             promise.always(function () {

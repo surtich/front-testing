@@ -4,14 +4,11 @@ echo "Starting static server..."
 echo "************************"
 echo "Testing API REST..."
 echo "************************"
-./node_modules/.bin/cucumber.js nock/test/features/api.register.feature
+./node_modules/.bin/cucumber.js nock/test/features/*
 echo "************************"
-echo "Testing FRONT-END info.html..."
+echo "Testing FRONT-END..."
 echo "************************"
-./node_modules/.bin/cucumber.js client/test/features/front.info.feature
-echo "************************"
-echo "Testing FRONT-END register.html..."
-./node_modules/.bin/cucumber.js client/test/features/front.register.feature
+./node_modules/.bin/cucumber.js client/test/features/*
 echo "************************"
 echo "Killing background processes..."
 echo "************************"
