@@ -82,12 +82,14 @@
               $('#infoWindow').get(0).src = 'info.html?userId=' + data._id;
             });
 
-            promise.fail(function (err) {
+            promise.fail(function (data) {
               message = 'Error';
-              if (typeof err === 'string') {
-                message = err;
-              } else if ('message' in err) {
-                message += ': ' + err.message;
+              if (typeof data === 'string') {
+                message = data;
+              } else if ('message' in data) {
+                message += ': ' + data.message;
+              } else if ('responseJSON' in data) {
+                message += ': ' + data.responseJSON.message;
               }
             });
 

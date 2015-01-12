@@ -10,7 +10,7 @@
   "devDependencies": {
     "nock": "~0.52.4",
     "request": "~2.51.0",
-    "zombie": "~2.5.1",
+    "zombie": "~2.1.1",
     "cucumber": "~0.4.6",
     "http-server": "~0.7.4"
   },

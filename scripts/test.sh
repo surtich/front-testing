@@ -12,4 +12,4 @@ echo "************************"
 echo "************************"
 echo "Killing background processes..."
 echo "************************"
-jobs -p | xargs -I{} kill {}
+jobs -p | xargs -I {} kill {}
