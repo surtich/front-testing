@@ -8,7 +8,7 @@ echo "************************"
 echo "************************"
 echo "Testing FRONT-END..."
 echo "************************"
-./node_modules/.bin/cucumber.js client/test/features/*
+./node_modules/.bin/cucumber.js client/test/features/front.duplicated.user.feature
 echo "************************"
 echo "Killing background processes..."
 echo "************************"

@@ -3,6 +3,7 @@
     <title>Register</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="bundle.js"></script>
 		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
   </head>
   <body>
@@ -67,6 +68,7 @@
           $('#email').focus(cleanMessages);
 
           $('#register').click(function (e) {
+						alert(">>>>>>>>>>>aqui3")
             e.preventDefault();
             var promise;
             var message = validateRegister($('#username').val(), $('#email').val());
@@ -83,6 +85,7 @@
             });
 
             promise.fail(function (err) {
+							console.log(">>>>>>>>>>>aqui", arguments)
               message = 'Error';
               if (typeof err === 'string') {
                 message = err;
